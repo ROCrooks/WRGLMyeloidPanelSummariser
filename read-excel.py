@@ -4,7 +4,9 @@ import pandas as pd
 #Get the Excel file and the list of sheets which it contains
 excel = pd.ExcelFile('example-excel.xlsx')
 sheets = excel.sheet_names
-print(sheets)
+
+sheet = excel.parse("Sheet1")
+print(sheet)
 
 #Test dataframe
 df1 = pd.DataFrame([['a', 'b'], ['c', 'd']],
