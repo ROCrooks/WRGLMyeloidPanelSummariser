@@ -1,7 +1,8 @@
 import os
 import datetime
 from os import listdir
-from os.path import isfile, join
+from os.path import isfile, join, isdir
+from shutil import rmtree
 
 def createfolder():
     #Get date and format as ISO 8601
@@ -19,6 +20,27 @@ def createfolder():
 
     #Make new directory and put the labelled file in it
     path = "Myeloid" + currentdate
+
+    #Check if folder exists
+    if os.path.isdir(path) == True:
+        #Ask if want to overwrite, do not accept anything that isn't y or n
+        overwrite = ""
+        while overwrite != 'y' and overwrite != 'n':
+            overwrite = input("A myeloid panel folder has already been created today. Do you want to overwrite the current one? (y/n) ")
+
+        #If yes delete
+        if overwrite == "y":
+            rmtree(path)
+        elif overwrite == "n":
+            #Append a flag at the end of the folder name
+            appendno = 1
+            path = path + "-" + str(appendno)
+            #Incremenent flag number until the folder name doesn't exist
+            while os.path.isdir(path) == True:
+                appendno = appendno+1
+                path = path + "-" + str(appendno)
+
+        #If no create new folder name
 
     os.mkdir(path)
 
