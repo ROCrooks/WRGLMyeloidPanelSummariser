@@ -10,11 +10,14 @@ from os.path import isfile, join
 #Container to hold errors
 errors = []
 
+#Create the folder for analysing the batch
 try:
     from createfolder import createfolder
-    createfolder()
+    workingpath = createfolder()
 except:
     errors.append("Cannot create folder")
+
+print(workingpath)
 
 #Import the excel file
 try:

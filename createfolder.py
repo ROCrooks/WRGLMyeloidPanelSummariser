@@ -55,3 +55,5 @@ def createfolder():
     folderopencommand = filemanager + " " + path
 
     os.system(folderopencommand)
+
+    return path
