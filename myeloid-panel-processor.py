@@ -17,7 +17,14 @@ try:
 except:
     errors.append("Cannot create folder")
 
-print(workingpath)
+#Prompt for user to place Excel file(s) into folder
+input("Copy your input file into the folder and press Enter to continue...")
+
+#Select the excel file from the folder
+from selectexcel import selectexcel
+excelfile = selectexcel(workingpath)
+
+print(excelfile)
 
 #Import the excel file
 try:
