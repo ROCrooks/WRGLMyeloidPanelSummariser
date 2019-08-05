@@ -1,11 +1,9 @@
 #Import required modules
-import pandas as pd
 import re
 
-def getexcelwnumbersheetnames(excelfile)
+def getexcelwnumbersheetnames(excelfile):
     #Get the Excel file and the list of sheets which it contains
-    excel = pd.ExcelFile('example-excel.xlsx')
-    allsheets = excel.sheet_names
+    allsheets = excelfile.sheet_names
 
     #Only keep sheet names that match the regular expression
     resultssheets = []
