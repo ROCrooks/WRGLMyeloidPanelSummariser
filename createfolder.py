@@ -3,6 +3,7 @@ import datetime
 from os import listdir
 from os.path import isfile, join, isdir
 from shutil import rmtree
+import subprocess
 
 def createfolder():
     #Get date and format as ISO 8601
@@ -44,6 +45,7 @@ def createfolder():
 
     os.mkdir(path)
 
+    #Create a file saying to place the file in the open directory
     aidlabel = '"PLACE FILES HERE"'
     touchcommand = "touch " + path + "/" + aidlabel
     os.system(touchcommand)
@@ -52,8 +54,10 @@ def createfolder():
     filemanager = "nautilus"
 
     #Open folder onto screen
-    folderopencommand = filemanager + " " + path
+    folderopencommand = filemanager + ' "' + path + '"'
 
-    os.system(folderopencommand)
+    #os.system(folderopencommand)
+    subprocess.Popen([filemanager, path],close_fds=True)
+    #os.startfile(folderopencommand)
 
     return path
