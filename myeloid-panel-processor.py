@@ -1,8 +1,20 @@
 #Import required modules
 import pandas as pd
 
+import os
+import datetime
+from os import listdir
+from os.path import isfile, join
+
+
 #Container to hold errors
 errors = []
+
+try:
+    from createfolder import createfolder
+    createfolder()
+except:
+    errors.append("Cannot create folder")
 
 #Import the excel file
 try:
