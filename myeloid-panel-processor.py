@@ -21,14 +21,15 @@ except:
 input("Copy your input file into the folder and press Enter to continue...")
 
 #Select the excel file from the folder
-from selectexcel import selectexcel
-excelfile = selectexcel(workingpath)
-
-print(excelfile)
+try:
+    from selectexcel import selectexcel
+    excelfile = selectexcel(workingpath)
+except:
+    errors.append("Cannot access any Excel files in the directory")
 
 #Import the excel file
 try:
-    excelfile = pd.ExcelFile('example-excel.xlsx')
+    excelfile = pd.ExcelFile(excelfile)
 except:
     errors.append("The file does not appear to be a valid Excel file")
 
@@ -38,6 +39,8 @@ try:
     sheetnames = getexcelwnumbersheetnames(excelfile)
 except:
     errors.append("The Excel file does not appear to have any readable sheets")
+
+print(sheetnames)
 
 #Print errors that were collected
 if len(errors) > 0:
