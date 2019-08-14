@@ -55,36 +55,39 @@ try:
 except:
     errors.append("The Excel file does not appear to have any readable sheets")
 
-#Open the workbook
-outputfile = "Myeloid" + currentdate + "/MyeloidCoverageSummary" + currentdate + ".xlsx"
-outputworkbook = xlsxwriter.Workbook(outputfile)
+try:
+    #Open the workbook
+    outputfile = "Myeloid" + currentdate + "/MyeloidCoverageSummary" + currentdate + ".xlsx"
+    outputworkbook = xlsxwriter.Workbook(outputfile)
 
-#Read each sheet in the spreadsheet
-for sheet in sheetnames:
-    sheeterror = False
-    try:
-        #Extract Excel sheet as a dataframe
-        df = excelfile.parse(sheet)
+    #Read each sheet in the spreadsheet
+    for sheet in sheetnames:
+        sheeterror = False
+        try:
+            #Extract Excel sheet as a dataframe
+            df = excelfile.parse(sheet)
 
-        #Make coverage data into a dictionary
-        genes = df['ID'].tolist()
-        coverage = df['100x'].tolist()
-        coveragedata = dict(zip(genes,coverage))
-    except:
-        errors.append("Cannot read coverage sheet " + sheet)
-        sheeterror = True
+            #Make coverage data into a dictionary
+            genes = df['ID'].tolist()
+            coverage = df['100x'].tolist()
+            coveragedata = dict(zip(genes,coverage))
+        except:
+            errors.append("Cannot read coverage sheet " + sheet)
+            sheeterror = True
 
-    #Write the sheet to the output Excel file
-    if sheeterror == False:
-        #try:
-        from makeexcelsheet import makeexcelsheet
+        #Write the sheet to the output Excel file
+        if sheeterror == False:
+            try:
+                from makeexcelsheet import makeexcelsheet
+                makeexcelsheet(outputworkbook,sheet,coveragedata)
+            except:
+                errors.append("Failure to make sheet " + sheet)
 
-        makeexcelsheet(outputworkbook,sheet,coveragedata)
-
-        #except:
-        #    errors.append("Failure to make sheet " + sheet)
-
-outputworkbook.close()
+    #Close the output workbook and print success
+    outputworkbook.close()
+    print("Success! Created the myeloid panel summary spreadsheet!")
+except:
+    errors.append("Failed to create myeloid panel workbook " + sheet)
 
 #Print errors that were collected
 if len(errors) > 0:
