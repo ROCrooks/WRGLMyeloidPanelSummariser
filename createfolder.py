@@ -47,8 +47,10 @@ def createfolder():
 
     #Create a file saying to place the file in the open directory
     aidlabel = '"PLACE FILES HERE"'
-    touchcommand = "touch " + path + "/" + aidlabel
-    os.system(touchcommand)
+    #touchcommand = "touch " + path + "/" + aidlabel
+    #os.system(touchcommand)
+    touchcommand = path + "/" + aidlabel
+    open(touchcommand,'a').close()
 
     #Specify the name of your file manager here
     filemanager = "nautilus"
@@ -56,8 +58,9 @@ def createfolder():
     #Open folder onto screen
     folderopencommand = filemanager + ' "' + path + '"'
 
-    #os.system(folderopencommand)
-    subprocess.Popen([filemanager, path],close_fds=True)
+    os.system(folderopencommand)
+    #FNULL = open(os.devnull, 'w')
+    #subprocess.Popen([filemanager, path],close_fds=True,stout=FNULL,stderr=subprocess.STDOUT)
     #os.startfile(folderopencommand)
 
     return path
