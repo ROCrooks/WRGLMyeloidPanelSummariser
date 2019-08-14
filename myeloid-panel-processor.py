@@ -6,6 +6,20 @@ import datetime
 from os import listdir
 from os.path import isfile, join
 
+import datetime
+
+#Get date and format as ISO 8601
+now = datetime.datetime.now()
+if now.month < 10:
+    month = "0" + str(now.month)
+else:
+    month = str(now.month)
+
+if now.day < 10:
+    day = "0" + str(now.day)
+else:
+    day = str(now.day)
+currentdate = str(now.year) + month + day
 
 #Container to hold errors
 errors = []
@@ -13,7 +27,7 @@ errors = []
 #Create the folder for analysing the batch
 try:
     from createfolder import createfolder
-    workingpath = createfolder()
+    workingpath = createfolder(currentdate)
 except:
     errors.append("Cannot create folder")
 
