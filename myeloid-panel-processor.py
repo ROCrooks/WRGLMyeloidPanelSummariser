@@ -40,7 +40,15 @@ try:
 except:
     errors.append("The Excel file does not appear to have any readable sheets")
 
-print(sheetnames)
+#Read each sheet in the spreadsheet
+for sheet in sheetnames:
+    df = excelfile.parse(sheet)
+
+    #Make coverage data into a dictionary
+    index = df['ID'].tolist()
+    values = df['100x'].tolist()
+    dictionary = dict(zip(index,values))
+    print(dictionary)
 
 #Print errors that were collected
 if len(errors) > 0:
