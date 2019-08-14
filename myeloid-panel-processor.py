@@ -70,11 +70,11 @@ for sheet in sheetnames:
         genes = df['ID'].tolist()
         coverage = df['100x'].tolist()
         coveragedata = dict(zip(genes,coverage))
-        print(coveragedata)
     except:
         errors.append("Cannot read coverage sheet " + sheet)
         sheeterror = True
 
+    #Write the sheet to the output Excel file
     if sheeterror == False:
         #try:
         from makeexcelsheet import makeexcelsheet
