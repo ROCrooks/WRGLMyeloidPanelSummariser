@@ -42,6 +42,7 @@ except:
 
 #Read each sheet in the spreadsheet
 for sheet in sheetnames:
+    sheeterror = False
     try:
         #Extract Excel sheet as a dataframe
         df = excelfile.parse(sheet)
@@ -53,6 +54,14 @@ for sheet in sheetnames:
         print(coveragedata)
     except:
         errors.append("Cannot read coverage sheet " + sheet)
+        sheeterror = True
+
+    if sheeterror == False:
+        #try:
+        from makeexcelsheet import makeexcelsheet
+        #except:
+        #    errors.append("Failure to make sheet " + sheet)
+
 
 #Print errors that were collected
 if len(errors) > 0:
