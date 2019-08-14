@@ -1,5 +1,6 @@
 #Import required modules
 import pandas as pd
+import xlsxwriter
 
 import os
 import datetime
@@ -54,6 +55,10 @@ try:
 except:
     errors.append("The Excel file does not appear to have any readable sheets")
 
+#Open the workbook
+outputfile = "Myeloid" + currentdate + "/MyeloidCoverageSummary" + currentdate + ".xlsx"
+outputworkbook = xlsxwriter.Workbook(outputfile)
+
 #Read each sheet in the spreadsheet
 for sheet in sheetnames:
     sheeterror = False
@@ -73,9 +78,13 @@ for sheet in sheetnames:
     if sheeterror == False:
         #try:
         from makeexcelsheet import makeexcelsheet
+
+        makeexcelsheet(outputworkbook,sheet,coveragedata)
+
         #except:
         #    errors.append("Failure to make sheet " + sheet)
 
+outputworkbook.close()
 
 #Print errors that were collected
 if len(errors) > 0:
