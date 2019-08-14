@@ -42,13 +42,17 @@ except:
 
 #Read each sheet in the spreadsheet
 for sheet in sheetnames:
-    df = excelfile.parse(sheet)
+    try:
+        #Extract Excel sheet as a dataframe
+        df = excelfile.parse(sheet)
 
-    #Make coverage data into a dictionary
-    index = df['ID'].tolist()
-    values = df['100x'].tolist()
-    dictionary = dict(zip(index,values))
-    print(dictionary)
+        #Make coverage data into a dictionary
+        genes = df['ID'].tolist()
+        coverage = df['100x'].tolist()
+        coveragedata = dict(zip(genes,coverage))
+        print(coveragedata)
+    except:
+        errors.append("Cannot read coverage sheet " + sheet)
 
 #Print errors that were collected
 if len(errors) > 0:
