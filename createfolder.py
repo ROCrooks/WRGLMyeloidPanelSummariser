@@ -4,9 +4,9 @@ from os.path import isfile, join, isdir
 from shutil import rmtree
 import subprocess
 
-def createfolder(currentdate):
+def createfolder(currentdate,name):
     #Make new directory and put the labelled file in it
-    path = "Myeloid" + currentdate
+    path = name + currentdate
 
     #Check if folder exists
     if os.path.isdir(path) == True:

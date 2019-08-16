@@ -28,7 +28,7 @@ errors = []
 #Create the folder for analysing the batch
 try:
     from createfolder import createfolder
-    workingpath = createfolder(currentdate)
+    workingpath = createfolder(currentdate,"Myeloid")
 except:
     errors.append("Cannot create folder")
 
