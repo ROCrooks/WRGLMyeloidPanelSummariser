@@ -1,6 +1,5 @@
 #Use pandas
 import pandas as pd
-
 import datetime
 
 #Get date and format as ISO 8601
@@ -37,8 +36,23 @@ try:
 except:
     errors.append("Cannot access any Excel files in the directory")
 
-#df1 = pd.read_excel('realexcel1.xlsx')
-#df2 = pd.read_excel('realexcel2.xlsx')
+#Read the Excel files
+try:
+    excel1 = pd.ExcelFile(excelfile1)
+    excel2 = pd.ExcelFile(excelfile2)
+except:
+    errors.append("Cannot access any Excel files in the directory")
+
+#Get all the sheet names from the Excel file
+try:
+    from readexcelfile import getexcelwnumbersheetnames
+    sheetnames1 = getexcelwnumbersheetnames(excel1)
+    sheetnames2 = getexcelwnumbersheetnames(excel2)
+except:
+    errors.append("The Excel file does not appear to have any readable sheets")
+
+print(sheetnames1)
+print(sheetnames2)
 
 #difference = df1[df1!=df2]
 #differencesum = difference.sum()
