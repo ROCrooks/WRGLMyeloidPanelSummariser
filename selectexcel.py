@@ -3,7 +3,7 @@ from os import listdir
 from os.path import isfile, join
 import re
 
-def selectexcel(path):
+def selectexcel(path,usecase):
     #Get file names
     fileslist = [f for f in listdir(path) if isfile(join(path, f))]
 
@@ -18,11 +18,15 @@ def selectexcel(path):
         filenumber = 1
 
         #List all excel files and press enter
-        print("Multiple Excel files found in directory!")
         for xlfile in xlfiles:
             print(str(filenumber) + ": " + xlfile)
             filenumber = filenumber+1
-        choosenumber = input("Please type the number of the Excel file and press Enter: ")
+        if usecase == "only":
+            choosenumber = input("Please type the number of the Excel file and press Enter: ")
+        elif usecase == 1:
+            choosenumber = input("Please type the number of the 1st Excel file and press Enter: ")
+        elif usecase == 2:
+            choosenumber = input("Please type the number of the 2nd Excel file and press Enter: ")
 
         #Get the Excel file based on the number specified
         choosenumber = int(choosenumber)-1

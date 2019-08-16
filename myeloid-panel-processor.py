@@ -7,8 +7,6 @@ import datetime
 from os import listdir
 from os.path import isfile, join
 
-import datetime
-
 #Get date and format as ISO 8601
 now = datetime.datetime.now()
 if now.month < 10:
@@ -38,7 +36,7 @@ input("Copy your input file into the folder and press Enter to continue...")
 #Select the excel file from the folder
 try:
     from selectexcel import selectexcel
-    excelfile = selectexcel(workingpath)
+    excelfile = selectexcel(workingpath,"only")
 except:
     errors.append("Cannot access any Excel files in the directory")
 
