@@ -51,8 +51,72 @@ try:
 except:
     errors.append("The Excel file does not appear to have any readable sheets")
 
-print(sheetnames1)
-print(sheetnames2)
+mismatches = []
+
+#Look for mismatches Excel1 into Excel2
+for sheetname in sheetnames1:
+    #Extract Excel sheet as a dataframe
+    df1 = excel1.parse(sheetname)
+
+    #See if a sheet in excel2 exists
+    try:
+        df2 = excel2.parse(sheetname)
+        comparesheets = True
+    except:
+        mismatches.append(sheetname + " is not in both spreadsheet files.")
+        comparesheets = False
+
+    try:
+        if comparesheets is True:
+            #Calculate the difference between the Excel sheets
+            difference = df1[df1!=df2]
+            differencesum = difference.sum()
+            differencesum = differencesum.sum()
+
+            #Append as mismatch if there is a difference
+            if differencesum > 0:
+                mismatches.append(sheetname + " is not the same in both files.")
+    except:
+        errors.append("There is an error in comparing the Excel sheets named " + sheetname)
+#Look for mismatches Excel1 into Excel2
+for sheetname in sheetnames2:
+    #Extract Excel sheet as a dataframe
+    df1 = excel2.parse(sheetname)
+
+    #See if a sheet in excel2 exists
+    try:
+        df2 = excel1.parse(sheetname)
+        comparesheets = True
+    except:
+        mismatches.append(sheetname + " is not in both spreadsheet files.")
+        comparesheets = False
+
+    try:
+        if comparesheets is True:
+            #Calculate the difference between the Excel sheets
+            difference = df1[df1!=df2]
+            differencesum = difference.sum()
+            differencesum = differencesum.sum()
+
+            #Append as mismatch if there is a difference
+            if differencesum > 0:
+                mismatches.append(sheetname + " is not the same in both files.")
+    except:
+        errors.append("There is an error in comparing the Excel sheets named " + sheetname)
+
+
+#Print errors that were collected
+if len(mismatches) > 0:
+    print("Mismatches between the files have been identified")
+    for mismatch in mismatches:
+        print("Mismatch: " + mismatch)
+else:
+    print("The files are identical!")
+
+#Print errors that were collected
+if len(errors) > 0:
+    for error in errors:
+        print("Error: " + error)
 
 #difference = df1[df1!=df2]
 #differencesum = difference.sum()
