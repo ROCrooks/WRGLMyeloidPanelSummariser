@@ -55,7 +55,7 @@ except:
 
 try:
     #Open the workbook
-    outputfile = "Myeloid" + currentdate + "/MyeloidCoverageSummary" + currentdate + ".xlsx"
+    outputfile = "output/Myeloid" + currentdate + "/MyeloidCoverageSummary" + currentdate + ".xlsx"
     outputworkbook = xlsxwriter.Workbook(outputfile)
 
     #Read each sheet in the spreadsheet
