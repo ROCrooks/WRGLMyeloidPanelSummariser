@@ -6,7 +6,7 @@ import subprocess
 
 def createfolder(currentdate,name):
     #Make new directory and put the labelled file in it
-    path = name + currentdate
+    path = "output/" + name + currentdate
 
     #Check if folder exists
     if os.path.isdir(path) == True:
