@@ -8,7 +8,7 @@ def getexcelwnumbersheetnames(excelfile):
     #Only keep sheet names that match the regular expression
     resultssheets = []
     for sheet in allsheets:
-        if (bool(re.match(r"W[0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9]",sheet)) == True):
+        if (bool(re.match(r"W[0-9][0-9][0-9][0-9][0-9][0-9][0-9]",sheet)) == True):
             resultssheets.append(sheet)
 
     return resultssheets

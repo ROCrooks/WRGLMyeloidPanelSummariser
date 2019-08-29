@@ -39,7 +39,7 @@ def createfolder(currentdate,name):
     open(touchcommand,'a').close()
 
     #Specify the name of your file manager here
-    filemanager = "nautilus"
+    filemanager = "pcmanfm -d "
 
     #Open folder onto screen
     folderopencommand = filemanager + ' "' + path + '"'

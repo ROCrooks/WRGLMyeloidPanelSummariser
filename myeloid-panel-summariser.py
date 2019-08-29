@@ -42,7 +42,7 @@ except:
 
 #Import the excel file
 try:
-    excelfile = pd.ExcelFile(excelfile)
+    excelfile = pd.ExcelFile(workingpath + "/" + excelfile)
 except:
     errors.append("The file does not appear to be a valid Excel file")
 

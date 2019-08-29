@@ -32,6 +32,6 @@ def selectexcel(path,usecase):
         choosenumber = int(choosenumber)-1
         xlfile = xlfiles[choosenumber]
     else:
-        xlfile = ""
+        xlfile = None
 
     return xlfile
