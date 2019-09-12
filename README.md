@@ -5,3 +5,5 @@ The myeloid-panel-summariser.py file is the file that summarises the per sample 
 The testing-myeloid-panel-summariser.py file is the file that tests differences between the outputs of different versions of the myeloid panel summariser. Use this script to test if there are any differences in the output before making revisions.
 
 This script is designed to integrate with current (as of August 2019) Wessex Regional Genetics Laboratory coverage scripts.
+
+To be maintained by Ben.Sanders@NHS.net
